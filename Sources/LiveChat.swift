@@ -17,6 +17,7 @@ typealias CustomVariables = [(String, String)]
     @objc optional func chatPresented()
     @objc optional func chatDismissed()
     @objc optional func supportedInterfaceOrientations() -> UIInterfaceOrientationMask
+    @objc optional func preferredStatusBarStyle() -> UIStatusBarStyle
 }
 
 public class LiveChat : NSObject {
@@ -186,6 +187,10 @@ private class Manager : NSObject, LiveChatOverlayViewControllerDelegate, WebView
     
     @objc func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
         return delegate?.supportedInterfaceOrientations?() ?? .all
+    }
+    
+    @objc func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return delegate?.preferredStatusBarStyle?() ?? .default
     }
     
     @objc func handle(URL: URL) {
